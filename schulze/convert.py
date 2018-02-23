@@ -53,7 +53,7 @@ def convert_rated_candidates(
       ((('e',), ('b',), ('a',), ('d',), ('c',)), 8)])
     """
 
-    # create a list of rated candidates from the first item of the list
+    # create a list of candidates from the first item of the list
     candidates = sorted(list(list(rated_candidates_seq)[0].keys()))
 
     candidate_ranking_weights = defaultdict(lambda: 0)
