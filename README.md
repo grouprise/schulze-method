@@ -25,7 +25,7 @@ def compute_ranks(candidate_names, weighted_ranks):
 For example usage, refer to the `schulze_test` module. From the command line, you can run these tests like so:
 
 ```text
-$ python -m unittest schulze_test
+$ python -m unittest tests/schulze_test.py
 .....
 ----------------------------------------------------------------------
 Ran 5 tests in 0.002s
