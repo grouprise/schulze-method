@@ -13,7 +13,7 @@ setup(
     license='Apache Software License',
     keywords='schulze ranking vote election',
     classifiers=[
-        'Development Status :: 5 - Production',
+        'Development Status :: 5 - Production/Stable',
         'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python :: 3',
     ],
