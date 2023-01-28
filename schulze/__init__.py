@@ -15,21 +15,25 @@ def _add_remaining_ranks(d, candidate, remaining_ranks, weight):
             d[candidate, other_candidate] += weight
 
 
-def _add_ranks_to_d(d, ranks, weight):
+def _add_ranks_to_d(d, ranks, weight, candidates):
+    if len(ranks) < len(candidates):
+        for candidat in candidates:
+            if (candidat,) not in ranks:
+                ranks.append((candidat,))
     for i, rank in enumerate(ranks):
         remaining_ranks = ranks[i + 1:]
         for candidate in rank:
             _add_remaining_ranks(d, candidate, remaining_ranks, weight)
 
 
-def _compute_d(weighted_ranks):
+def _compute_d(weighted_ranks, candidates):
     """Computes the d array in the Schulze method.
 
     d[V,W] is the number of voters who prefer candidate V over W.
     """
     d = defaultdict(int)
     for ranks, weight in weighted_ranks:
-        _add_ranks_to_d(d, ranks, weight)
+        _add_ranks_to_d(d, ranks, weight, candidates)
     return d
 
 
@@ -95,6 +99,6 @@ def compute_ranks(candidates, weighted_ranks):
     can express ties. For example, [[a, b], [c], [d, e]] represents a = b > c > d = e.
     The second element, weight, is typically the number of voters that chose this ranking.
     """
-    d = _compute_d(weighted_ranks)
+    d = _compute_d(weighted_ranks, candidates)
     p = _compute_p(d, candidates)
     return _rank_p(candidates, p)
